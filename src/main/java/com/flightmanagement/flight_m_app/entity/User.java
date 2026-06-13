@@ -1,33 +1,46 @@
 package com.flightmanagement.flight_m_app.entity;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.flightmanagement.flight_m_app.Role.Role;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name = "Passenger")
-public class Passenger {
-
-    @Id
+@Table(name="User")
+public class User {
+@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(nullable = false)
+    private String fullName;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<Booking> bookings = new ArrayList<>();
+    
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    // RELATIONSHIP
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.PERSIST)
+    private List<Booking> bookings;
 
     public Long getId() {
         return id;
@@ -37,12 +50,12 @@ public class Passenger {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -61,6 +74,16 @@ public class Passenger {
         this.password = password;
     }
 
+   
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -68,7 +91,13 @@ public class Passenger {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
-
-    public Passenger() {}
     
+public Role getRole() {
+    return role;
 }
+
+public void setRole(Role role) {
+    this.role = role;
+}
+
+} 

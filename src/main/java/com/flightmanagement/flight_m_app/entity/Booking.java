@@ -1,11 +1,14 @@
 package com.flightmanagement.flight_m_app.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,18 +23,24 @@ public class Booking {
     private Long id;
     private String status; // CONFIRMED, CANCELLED
     private LocalDateTime bookingDate;
+    private String Booking_reference;
 
+public String getBooking_reference() {
+        return Booking_reference;
+    }
 
-@ManyToOne
-@JoinColumn(name = "passenger_id")
-private Passenger passenger;
+    public void setBooking_reference(String booking_reference) {
+        Booking_reference = booking_reference;
+    }
 
 
 @ManyToOne
     @JoinColumn(name = "flight_id")
     private flight flight;
 
-
+@ManyToOne
+    @JoinColumn(name = "User_id")
+    private User user;
 
 
 public Long getId() {

@@ -32,10 +32,34 @@ public class flight {
     private LocalDateTime arrivalTime;
 
     private int capacity;
+    private String status;
+    private Double Price;
+
+
 
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.PERSIST)
     private List<Booking> bookings = new ArrayList<>();
+
+
+
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Double getPrice() {
+        return Price;
+    }
+
+    public void setPrice(Double price) {
+        Price = price;
+    }
 
 
     public Long getId() {
