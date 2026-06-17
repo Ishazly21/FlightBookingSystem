@@ -43,6 +43,22 @@ public String getBooking_reference() {
     private User user;
 
 
+public flight getFlight() {
+    return flight;
+}
+
+public void setFlight(flight flight) {
+    this.flight = flight;
+}
+
+public User getUser() {
+    return user;
+}
+
+public void setUser(User user) {
+    this.user = user;
+}
+
 public Long getId() {
         return id;
     }

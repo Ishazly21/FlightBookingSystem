@@ -1,5 +1,5 @@
 package com.flightmanagement.flight_m_app.Controller;
-
+import com.flightmanagement.flight_m_app.Config.*;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -25,15 +25,16 @@ public class FlightController {
 
     }
 
-    @PostMapping("/CreateFlight")
+    @PostMapping("/create")
     public ResponseEntity<flight> createFlight(@RequestBody CreateFlightRequest request)
     {
+        System.out.println("create hit !!!*(*((****");
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.createFlight(request));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<flight>> getAllFlights() {
-        
+        System.out.println("view flights hitt !!!!!!!");
         return ResponseEntity.ok(flightService.getAllFlights());
     }
 
