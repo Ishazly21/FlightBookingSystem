@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.flightmanagement.flight_m_app.Dto.Request.SignUpRequest;
-import com.flightmanagement.flight_m_app.Dto.Response.SignUpResponse;
 import com.flightmanagement.flight_m_app.Repository.UserRepository;
 import com.flightmanagement.flight_m_app.Service.UserService;
 import com.flightmanagement.flight_m_app.entity.User;
@@ -20,7 +18,7 @@ public class UserServiceImpl implements UserService {
         this.UserRepository = UserRepository;
     }
 
-    @Override
+    /*@Override
     public SignUpResponse signup(SignUpRequest request) {
         
         
@@ -54,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
 public List<User> getAllUsers() {
     return UserRepository.findAll();
-}
+}*/
 
     
 }

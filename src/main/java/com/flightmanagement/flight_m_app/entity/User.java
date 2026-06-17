@@ -3,6 +3,7 @@ package com.flightmanagement.flight_m_app.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flightmanagement.flight_m_app.Role.Role;
 
 import jakarta.persistence.CascadeType;
@@ -39,6 +40,7 @@ public class User {
     private Role role;
 
     // RELATIONSHIP
+    @JsonIgnore
     @OneToMany(mappedBy = "user" , cascade = CascadeType.PERSIST)
     private List<Booking> bookings;
 
