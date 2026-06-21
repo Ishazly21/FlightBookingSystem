@@ -1,5 +1,4 @@
 package com.flightmanagement.flight_m_app.Controller;
-import com.flightmanagement.flight_m_app.Config.*;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flightmanagement.flight_m_app.Dto.Request.CreateFlightRequest;
+import com.flightmanagement.flight_m_app.Dto.Request.flightSearchRequest;
+import com.flightmanagement.flight_m_app.Dto.Response.flightResponseMapper;
+import com.flightmanagement.flight_m_app.Dto.Response.flightSearchResponse;
 import com.flightmanagement.flight_m_app.Service.FlightService;
 import com.flightmanagement.flight_m_app.entity.flight;
 
@@ -32,11 +34,17 @@ public class FlightController {
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.createFlight(request));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<flight>> getAllFlights() {
-        System.out.println("view flights hitt !!!!!!!");
+     @GetMapping("/all")
+    public ResponseEntity<List<flightResponseMapper>> getAllFlights() {
         return ResponseEntity.ok(flightService.getAllFlights());
     }
 
+        @GetMapping("/search")
+public ResponseEntity<List<flightSearchResponse>> searchFlights(@RequestBody flightSearchRequest request)
+ {
+    return ResponseEntity.ok(
+            flightService.searchFlights(request)
+    );
+}
 
 }

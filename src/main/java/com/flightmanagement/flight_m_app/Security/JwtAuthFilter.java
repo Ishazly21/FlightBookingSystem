@@ -36,7 +36,10 @@ public JwtAuthFilter(JwtService jwtService, UserRepository userRepository) {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
                 
+                        System.out.println("🔥 JWT FILTER HIT");
+
         String authHeader = request.getHeader("Authorization");
+        System.out.println("HEADER = " + authHeader);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
@@ -54,18 +57,22 @@ public JwtAuthFilter(JwtService jwtService, UserRepository userRepository) {
         if (user != null) {
             
             List<GrantedAuthority> authorities =
-            List.of(new SimpleGrantedAuthority(user.getRole().name()));
+            List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 
             UsernamePasswordAuthenticationToken auth =
             new UsernamePasswordAuthenticationToken(
                     user,
                     null,
                     authorities
+                    
             );
 
             SecurityContextHolder.getContext().setAuthentication(auth);
+            System.out.println("AUTH SET = " + auth);
+            System.out.println("AUTHORITIES = " + auth.getAuthorities());
         }
 
+            
         filterChain.doFilter(request, response);
     }
 

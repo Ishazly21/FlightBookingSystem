@@ -39,6 +39,10 @@ public class flight {
 
 
 
+    public FlightStatus getStatus() {
+        return status;
+    }
+
     public String getOrigin() {
         return origin;
     }

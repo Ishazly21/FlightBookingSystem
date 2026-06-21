@@ -16,7 +16,7 @@ import com.flightmanagement.flight_m_app.Dto.Request.SignUpRequest;
 import com.flightmanagement.flight_m_app.Service.impl.UserServiceImpl;;;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/admin")
 public class UserController {
 
     private final UserService userService;
@@ -28,17 +28,10 @@ public class UserController {
     
 
 
-/*@GetMapping("/users")
-public String getAllUsers() {
-    System.out.println("api is wor");
-    return "API works";
-}*/
-
-
-
-/*@GetMapping("/users")
-public  ResponseEntity<List<User>> getAllUsers() {
-    return ResponseEntity.ok(userService.getAllUsers()) ;
-}*/
+@GetMapping("/users")
+public ResponseEntity<List<User>> getAllUsers() {
+    System.out.println("api is working");
+    return ResponseEntity.ok(userService.getAllUsers());
+}
 
 }
